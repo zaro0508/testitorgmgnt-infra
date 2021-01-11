@@ -1,0 +1,90 @@
+AWSTemplateFormatVersion: '2010-09-09-OC'
+Description: org-formation template for organizations management account
+
+Organization:
+  MasterAccount:
+    Type: OC::ORG::MasterAccount
+    Properties:
+      AccountName: org-sagebase-testitorgmgnt
+      Alias: org-sagebase-testitorgmgnt
+      AccountId: '928879890086'
+      RootEmail: aws.testitorgmgnt@sagebase.org
+      Tags:
+        Department: Platform
+        Project: Infrastructure
+        budget-alarm-threshold: '100'
+        account-owner-email: aws.testitorgmgnt@sagebase.org
+
+  OrganizationRoot:
+    Type: OC::ORG::OrganizationRoot
+    Properties:
+      DefaultOrganizationAccessRoleName: OrganizationAccountAccessRole
+      ServiceControlPolicies:
+        - !Ref RestrictUnusedRegionsSCP
+
+  DevelopmentOU:
+    Type: OC::ORG::OrganizationalUnit
+    Properties:
+      OrganizationalUnitName: development
+
+  ProductionOU:
+    Type: OC::ORG::OrganizationalUnit
+    Properties:
+      OrganizationalUnitName: production
+
+  # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples.html#examples_general
+  RestrictUnusedRegionsSCP:
+    Type: OC::ORG::ServiceControlPolicy
+    Properties:
+      PolicyName: RestrictUnusedRegions
+      Description: Restrict Unused regions
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: DenyUnsupportedRegions
+            Effect: Deny
+            NotAction:
+              - 'a4b:*'
+              - 'acm:*'
+              - 'aws-marketplace-management:*'
+              - 'aws-marketplace:*'
+              - 'aws-portal:*'
+              - 'awsbillingconsole:*'
+              - 'budgets:*'
+              - 'ce:*'
+              - 'chime:*'
+              - 'cloudfront:*'
+              - 'config:*'
+              - 'cur:*'
+              - 'directconnect:*'
+              - 'ec2:DescribeRegions'
+              - 'ec2:DescribeTransitGateways'
+              - 'ec2:DescribeVpnGateways'
+              - 'fms:*'
+              - 'globalaccelerator:*'
+              - 'health:*'
+              - 'iam:*'
+              - 'importexport:*'
+              - 'kms:*'
+              - 'mobileanalytics:*'
+              - 'networkmanager:*'
+              - 'organizations:*'
+              - 'pricing:*'
+              - 'route53:*'
+              - 'route53domains:*'
+              - 's3:GetAccountPublic*'
+              - 's3:ListAllMyBuckets'
+              - 's3:PutAccountPublic*'
+              - 'shield:*'
+              - 'sts:*'
+              - 'support:*'
+              - 'trustedadvisor:*'
+              - 'waf-regional:*'
+              - 'waf:*'
+              - 'wafv2:*'
+              - 'wellarchitected:*'
+            Resource: '*'
+            Condition:
+              StringNotEquals:
+                'aws:RequestedRegion':
+                  - us-east-1
