@@ -30,19 +30,19 @@ CommunityIamSamlProviderRP:
     Account: '*'
     Region: us-east-1
 
-
-JumpcloudIDPAdmin:
-  Type: update-stacks
-  Template: ./jumpcloud-idp.yaml
-  DependsOn: CommunityIamSamlProviderRP
-  StackName: baseline-jumpcloud-idp-admin
-  MaxConcurrentStacks: 10
-  Parameters:
-    MetadataDocument: !ReadFile ./MetaDataDocuments/testitorgmgnt-admin.xml
-    SamlProviderName: testitorgmgnt-admin
-    SamlProviderPolicyArns:
-      - arn:aws:iam::aws:policy/AdministratorAccess
-  DefaultOrganizationBinding:
-    IncludeMasterAccount: true
-    Account: '*'
-    Region: us-east-1
+# Disable due to issue https://github.com/org-formation/aws-resource-providers/issues/59
+#JumpcloudIDPAdmin:
+#  Type: update-stacks
+#  Template: ./jumpcloud-idp.yaml
+#  DependsOn: CommunityIamSamlProviderRP
+#  StackName: baseline-jumpcloud-idp-admin
+#  MaxConcurrentStacks: 10
+#  Parameters:
+#    MetadataDocument: !ReadFile ./MetaDataDocuments/testitorgmgnt-admin.xml
+#    SamlProviderName: testitorgmgnt-admin
+#    SamlProviderPolicyArns:
+#      - arn:aws:iam::aws:policy/AdministratorAccess
+#  DefaultOrganizationBinding:
+#    IncludeMasterAccount: true
+#    Account: '*'
+#    Region: us-east-1
