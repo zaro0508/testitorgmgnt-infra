@@ -35,7 +35,7 @@ CommunityIamSamlProviderRP:
 #  Type: update-stacks
 #  Template: ./jumpcloud-idp.yaml
 #  DependsOn: CommunityIamSamlProviderRP
-#  StackName: baseline-jumpcloud-idp-admin
+#  StackName: baseline-testitorgmgnt-admin
 #  MaxConcurrentStacks: 10
 #  Parameters:
 #    MetadataDocument: !ReadFile ./MetaDataDocuments/testitorgmgnt-admin.xml
