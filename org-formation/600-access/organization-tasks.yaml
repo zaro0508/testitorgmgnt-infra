@@ -1,6 +1,6 @@
 CommunityIamSamlProviderRP:
   Type: register-type
-  SchemaHandlerPackage: s3://community-resource-provider-catalog/community-iam-samlprovider-0.1.0.zip
+  SchemaHandlerPackage: s3://community-resource-provider-catalog/community-iam-samlprovider-0.2.0.zip
   ResourceType: 'Community::IAM::SamlProvider'
   MaxConcurrentTasks: 10
   OrganizationBinding:
@@ -8,20 +8,18 @@ CommunityIamSamlProviderRP:
     Account: '*'
     Region: us-east-1
 
-# Disable due to issue https://github.com/org-formation/aws-resource-providers/issues/59
-#JumpcloudIDPAdmin:
-#  Type: update-stacks
-#  Template: ./jumpcloud-idp.yaml
-#  DependsOn: CommunityIamSamlProviderRP
-#  StackName: access-testitorgmgnt-admin
-#  MaxConcurrentStacks: 10
-#  Parameters:
-#    MetadataDocument: !ReadFile ./MetaDataDocuments/testitorgmgnt-admin.xml
-#    SamlProviderName: testitorgmgnt-admin
-#    SamlProviderPolicyArns:
-#      - arn:aws:iam::aws:policy/AdministratorAccess
-#  DefaultOrganizationBinding:
-#    IncludeMasterAccount: true
-#    Account: '*'
-#    Region: us-east-1
-
+AccessTestItOrgMgntAdmin:
+  Type: update-stacks
+  Template: ./jumpcloud-idp.yaml
+  DependsOn: CommunityIamSamlProviderRP
+  StackName: access-testitorgmgnt-admin
+  MaxConcurrentStacks: 10
+  Parameters:
+    MetadataDocument: !ReadFile ./MetaDataDocuments/testitorgmgnt-admin.xml
+    SamlProviderName: testitorgmgnt-admin
+    SamlProviderPolicyArns:
+      - arn:aws:iam::aws:policy/AdministratorAccess
+  DefaultOrganizationBinding:
+    IncludeMasterAccount: true
+    Account: '*'
+    Region: us-east-1
