@@ -15,11 +15,10 @@ AccessTestItOrgMgntAdmin:
   StackName: access-testitorgmgnt-admin
   MaxConcurrentStacks: 10
   Parameters:
-    MetadataDocument: !ReadFile ./MetaDataDocuments/testitorgmgnt-admin.xml
+    MetadataDocument: !ReadFile ./MetadataDocuments/testitorgmgnt-admin.xml
     SamlProviderName: testitorgmgnt-admin
     SamlProviderPolicyArns:
       - arn:aws:iam::aws:policy/AdministratorAccess
-      -
   DefaultOrganizationBinding:
     IncludeMasterAccount: true
     Account: '928879890086'
