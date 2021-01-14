@@ -1,0 +1,29 @@
+dist: bionic
+language: node_js
+node_js:
+  - 15
+branches:
+  only:
+    - main
+before_install:
+  - pyenv global 3.8
+install:
+  - pip install pre-commit sceptre==2.3.0 sceptre-ssm-resolver sceptre-date-resolver awscli
+  - pip install git+git://github.com/Sceptre/sceptre-file-resolver.git
+stages:
+  - name: validate
+  - name: deploy
+    if: type = push AND branch = main
+jobs:
+  fast_finish: true
+  include:
+    - stage: validate
+      script:
+        - python -V
+        - pre-commit run --all-files
+    - stage: deploy
+      script:
+        - mkdir -p ~/.aws
+        - echo -e "[default]\nregion=us-east-1\nsource_profile=default\nrole_arn=$AwsCfServiceRoleArn_develop" > ~/.aws/config
+        - echo -e "[default]\nregion=us-east-1\naws_access_key_id=$AwsTravisAccessKey_develop\naws_secret_access_key=$AwsTravisSecretAccessKey_develop" > ~/.aws/credentials
+        - npx org-formation perform-tasks --verbose --print-stack --perform-cleanup org-formation/organization-tasks.yaml
