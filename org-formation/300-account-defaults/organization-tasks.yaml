@@ -18,3 +18,24 @@ Ec2EbsEncryptionDefaults:
     IncludeMasterAccount: true
     Account: '*'
     Region: us-east-1
+
+CommunityEc2NoDefaultVpcRP:
+  Type: register-type
+  SchemaHandlerPackage: s3://community-resource-provider-catalog/community-organizations-nodefaultvpc-0.1.0.zip
+  ResourceType: 'Community::Organizations::NoDefaultVPC'
+  MaxConcurrentTasks: 10
+  OrganizationBinding:
+    IncludeMasterAccount: true
+    Account: '*'
+    Region: us-east-1
+
+Ec2NoVpcDefaults:
+  Type: update-stacks
+  Template: ./ec2-no-default-vpc.yaml
+  DependsOn: CommunityEc2NoDefaultVpcRP
+  StackName: ec2-no-default-vpc
+  MaxConcurrentStacks: 10
+  DefaultOrganizationBinding:
+    IncludeMasterAccount: true
+    Account: '*'
+    Region: us-east-1
