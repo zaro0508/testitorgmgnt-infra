@@ -33,6 +33,8 @@ Organization:
     Type: OC::ORG::OrganizationalUnit
     Properties:
       OrganizationalUnitName: production
+      Accounts:
+        - !Ref MemberYAccount
 
   MemberXAccount:
     Type: OC::ORG::Account
@@ -45,6 +47,19 @@ Organization:
         Project: Infrastructure
         budget-alarm-threshold: '20'
         account-owner-email: aws.testitorgmgnt.memberx@sagebase.org
+
+  MemberYAccount:
+    Type: OC::ORG::Account
+    Properties:
+      Alias: org-sagebase-testitorgmgnt-membery
+      AccountName: A member account for testing
+      RootEmail: aws.testitorgmgnt.membery@sagebase.org
+      Tags:
+        Department: Platform
+        Project: Infrastructure
+        budget-alarm-threshold: '20'
+        account-owner-email: aws.testitorgmgnt.membery@sagebase.org
+
 
   # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples.html#examples_general
   RestrictUnusedRegionsSCP:
