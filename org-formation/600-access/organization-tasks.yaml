@@ -19,7 +19,8 @@ AccessTestItOrgMgntAdmin:
     SamlProviderName: testitorgmgnt-admin
     SamlProviderPolicyArns:
       - arn:aws:iam::aws:policy/AdministratorAccess
+      -
   DefaultOrganizationBinding:
     IncludeMasterAccount: true
-    Account: '*'
+    Account: '928879890086'
     Region: us-east-1
