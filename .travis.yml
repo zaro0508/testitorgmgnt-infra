@@ -8,6 +8,7 @@ branches:
 before_install:
   - pyenv global 3.8
 install:
+  - npm install
   - pip install pre-commit sceptre==2.3.0 sceptre-ssm-resolver sceptre-date-resolver awscli
   - pip install git+git://github.com/Sceptre/sceptre-file-resolver.git
 stages:
