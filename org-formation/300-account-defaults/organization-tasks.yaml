@@ -39,3 +39,23 @@ Ec2NoVpcDefaults:
     IncludeMasterAccount: true
     Account: '*'
     Region: us-east-1
+
+SceptreCloudformationBucket:
+  Type: update-stacks
+  Template: ./public-bucket.yaml
+  StackName: sceptre-cloudformation-bucket
+  MaxConcurrentStacks: 10
+  DefaultOrganizationBinding:
+    IncludeMasterAccount: true
+    Account: '*'
+    Region: us-east-1
+
+SceptreLambdaBucket:
+  Type: update-stacks
+  Template: ./public-bucket.yaml
+  StackName: sceptre-lambda-bucket
+  MaxConcurrentStacks: 10
+  DefaultOrganizationBinding:
+    IncludeMasterAccount: true
+    Account: '*'
+    Region: us-east-1
