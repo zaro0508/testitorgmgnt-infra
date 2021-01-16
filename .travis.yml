@@ -9,11 +9,17 @@ before_install:
   - pyenv global 3.8
 install:
   - npm install
-  - pip install pre-commit sceptre==2.3.0 sceptre-ssm-resolver sceptre-date-resolver
+  - pip install pre-commit awsume sceptre==2.3.0 sceptre-ssm-resolver sceptre-date-resolver
   - pip install git+git://github.com/Sceptre/sceptre-file-resolver.git
+before_script:
+  - mkdir -p ~/.aws
+  - echo -e "[default]\nregion=us-east-1\nsource_profile=default\nrole_arn=$CiServiceRoleArn" > ~/.aws/config
+  - echo -e "[default]\nregion=us-east-1\naws_access_key_id=$CiUserAccessKey\naws_secret_access_key=$CiUserSecretAccessKey" > ~/.aws/credentials
 stages:
   - name: validate
-  - name: deploy
+  - name: deploy-orgf
+    if: type = push AND branch = main
+  - name: deploy-sceptre
     if: type = push AND branch = main
 jobs:
   fast_finish: true
@@ -22,9 +28,13 @@ jobs:
       script:
         - python -V
         - pre-commit run --all-files
-    - stage: deploy
+    - stage: deploy-orgf
+      name: org-formation
       script:
-        - mkdir -p ~/.aws
-        - echo -e "[default]\nregion=us-east-1\nsource_profile=default\nrole_arn=$CiServiceRoleArn" > ~/.aws/config
-        - echo -e "[default]\nregion=us-east-1\naws_access_key_id=$CiUserAccessKey\naws_secret_access_key=$CiUserSecretAccessKey" > ~/.aws/credentials
-        - npx org-formation perform-tasks --verbose --print-stack --perform-cleanup org-formation/organization-tasks.yaml
+        - cd org-formation
+        - npx org-formation perform-tasks --verbose --print-stack --perform-cleanup organization-tasks.yaml
+    - stage: deploy-sceptre
+      name: sceptre
+      script:
+        - cd sceptre
+        - npx lerna run deploy --stream

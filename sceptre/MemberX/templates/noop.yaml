@@ -1,0 +1,5 @@
+Description: noop template
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  touchNothing:
+    Type: AWS::CloudFormation::WaitConditionHandle
