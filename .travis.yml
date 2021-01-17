@@ -9,7 +9,7 @@ before_install:
   - pyenv global 3.8
 install:
   - npm install
-  - pip install pre-commit awsume sceptre==2.3.0 sceptre-ssm-resolver sceptre-date-resolver
+  - pip install pre-commit assume sceptre==2.3.0 sceptre-ssm-resolver sceptre-date-resolver
   - pip install git+git://github.com/Sceptre/sceptre-file-resolver.git
 before_script:
   - mkdir -p ~/.aws
