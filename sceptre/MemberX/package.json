@@ -1,5 +1,5 @@
 {
   "scripts": {
-      "deploy": "assume add MemberX --role-arn arn:aws:iam::320171649655:role/OrganizationAccountAccessRole && assume switch MemberX && sceptre launch prod --yes"
+      "deploy": "assume add MemberX --role-arn arn:aws:iam::320171649655:role/OrganizationAccountAccessRole && assume switch MemberX && sceptre launch envs --yes"
   }
 }
