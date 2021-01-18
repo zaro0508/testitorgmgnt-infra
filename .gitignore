@@ -129,3 +129,9 @@ Pipfile*
 
 # npm
 node_modules/
+
+# sceptre
+sceptre/**/templates/remote/
+
+# lerna
+lerna-debug.log

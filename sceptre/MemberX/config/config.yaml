@@ -2,5 +2,5 @@ project_code: "sage-bionetworks"
 profile: {{ var.profile | default("default") }}
 region: {{ var.region | default("us-east-1") }}
 template_key_prefix: {{ environment_variable.TRAVIS_BRANCH | default("testing") }}
-template_bucket_name: "cf-templates-8vhvpn0dylv0-us-east-1"
+template_bucket_name: "sceptre-cloudformation-bucket-bucket-1vdymm61v5gi2"
 admincentral_cf_bucket: "bootstrap-awss3cloudformationbucket-19qromfd235z9"

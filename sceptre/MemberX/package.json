@@ -1,0 +1,6 @@
+{
+  "scripts": {
+      "predeploy": "assume add MemberX --role-arn arn:aws:iam::320171649655:role/OrganizationAccountAccessRole && assume switch MemberX",
+      "deploy": "sceptre launch envs --yes"
+  }
+}
