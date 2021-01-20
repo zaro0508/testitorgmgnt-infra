@@ -40,7 +40,7 @@ Organization:
     Type: OC::ORG::Account
     Properties:
       Alias: org-sagebase-testitorgmgnt-memberx
-      AccountName: A member account for testing
+      AccountName: org-sagebase-testitorgmgnt-memberx
       RootEmail: aws.testitorgmgnt.memberx@sagebase.org
       Tags:
         Department: Platform
@@ -52,7 +52,7 @@ Organization:
     Type: OC::ORG::Account
     Properties:
       Alias: org-sagebase-testitorgmgnt-membery
-      AccountName: A member account for testing
+      AccountName: org-sagebase-testitorgmgnt-membery
       RootEmail: aws.testitorgmgnt.membery@sagebase.org
       Tags:
         Department: Platform
