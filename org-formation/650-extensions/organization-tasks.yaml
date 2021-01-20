@@ -1,0 +1,10 @@
+
+AccessTestItOrgMgntAdmin:
+  Type: update-stacks
+  Template: ./cfn-s3objects-macro.yaml
+  StackName: cfn-s3objects-macro
+  MaxConcurrentStacks: 10
+  DefaultOrganizationBinding:
+    IncludeMasterAccount: false
+    Account: '*'
+    Region: us-east-1

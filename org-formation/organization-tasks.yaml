@@ -36,6 +36,10 @@ Access:
   Type: include
   Path: ./600-access/organization-tasks.yaml
 
+Extensions:
+  Type: include
+  Path: ./650-extensions/organization-tasks.yaml
+
 # # this feature will depend on the OrganizationBuild task.
 # MyFeature:
 #   Type: include
