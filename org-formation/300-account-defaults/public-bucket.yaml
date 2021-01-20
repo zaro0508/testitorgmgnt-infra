@@ -19,3 +19,12 @@ Resources:
               AWS: "*"
             Action: "s3:GetObject"
             Resource: !Sub "arn:aws:s3:::${Bucket}/*"
+Outputs:
+  BucketName:
+    Value: !Ref Bucket
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-BucketName'
+  BucketArn:
+    Value: !GetAtt Bucket.Arn
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-BucketArn'
