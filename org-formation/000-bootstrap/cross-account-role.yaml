@@ -9,6 +9,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Creates a role for cross account access'
 Parameters:
+  MasterAccountId:   # or account number
+    Type: String
   RoleName:
     Type: String
     Default: OrganizationAccountAccessRole
@@ -25,4 +27,4 @@ Resources:
          - Effect: Allow
            Action: sts:AssumeRole
            Principal:
-            AWS: !Ref AWS::AccountId
+            AWS: !Ref MasterAccountId
