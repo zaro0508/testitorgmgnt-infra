@@ -4,7 +4,7 @@ node_js:
   - 15
 branches:
   only:
-    - main
+    - master
 before_install:
   - pyenv global 3.8
 install:
@@ -18,9 +18,9 @@ before_script:
 stages:
   - name: validate
   - name: deploy-orgf
-    if: type = push AND branch = main
+    if: type = push AND branch = master
   - name: deploy-sceptre
-    if: type = push AND branch = main
+    if: type = push AND branch = master
 jobs:
   fast_finish: true
   include:
