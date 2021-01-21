@@ -26,7 +26,6 @@ jobs:
   include:
     - stage: validate
       script:
-        - python -V
         - pre-commit run --all-files
     - stage: deploy-orgf
       name: org-formation
