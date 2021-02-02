@@ -24,7 +24,7 @@ jobs:
           aws-access-key-id: ${{ secrets.CI_SERVICE_USER_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.CI_SERVICE_USER_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::531805629419:role/bootstrap-ci-service-access-CiServiceRole-VVXK9EUQNPUZ
+          role-to-assume: arn:aws:iam::928879890086:role/bootstrap-ci-service-access-CiServiceRole-ZUKNUGHX2CNB
           role-duration-seconds: 1200
       - name: Use Node.js
         uses: actions/setup-node@v1
