@@ -6,7 +6,6 @@ on:
 
 jobs:
   org-formation:
-    needs: pre-commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
