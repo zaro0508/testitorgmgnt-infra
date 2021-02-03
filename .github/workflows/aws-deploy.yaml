@@ -1,16 +1,22 @@
 name: aws-deploy
 
 on:
+  pull_request:
+    branches: '*'
   push:
     branches: [master]
-  workflow_run:
-    workflows: ["pre-commit"]
-    branches: [master]
-    types:
-      - completed
 
 jobs:
+  pre-commit:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: pre-commit/action@v2.0.0
   org-formation:
+    if: github.event_name == 'push'
+    needs: pre-commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -45,6 +51,7 @@ jobs:
           cd org-formation
           npx org-formation perform-tasks --verbose --print-stack --perform-cleanup organization-tasks.yaml
   sceptre-MemberX:
+    if: github.event_name == 'push'
     needs: org-formation
     runs-on: ubuntu-latest
     steps:
@@ -77,6 +84,7 @@ jobs:
           cd sceptre/MemberX
           sceptre launch prod --yes
   sceptre-MemberY:
+    if: github.event_name == 'push'
     needs: org-formation
     runs-on: ubuntu-latest
     steps:
