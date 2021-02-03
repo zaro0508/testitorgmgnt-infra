@@ -3,6 +3,11 @@ name: aws-deploy
 on:
   push:
     branches: [master]
+  workflow_run:
+    workflows: ["pre-commit"]
+    branches: [master]
+    types:
+      - completed
 
 jobs:
   org-formation:
