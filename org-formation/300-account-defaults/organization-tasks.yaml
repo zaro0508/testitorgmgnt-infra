@@ -76,3 +76,16 @@ ItKmsKey:
     IncludeMasterAccount: true
     Account: '*'
     Region: us-east-1
+
+ScWorkbenchSwDeVpc:
+  Type: update-stacks
+  Template: ./vpc-mini.yaml
+  StackName: ScWorkbenchSwDeVpc
+  Parameters:
+    VpcSubnetPrefix: "10.201.30"
+    VpcName: swdevvpc
+  MaxConcurrentStacks: 10
+  DefaultOrganizationBinding:
+    IncludeMasterAccount: false
+    Account: '*'
+    Region: us-east-1
