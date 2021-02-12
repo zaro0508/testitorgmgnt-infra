@@ -77,6 +77,23 @@ ItKmsKey:
     Account: '*'
     Region: us-east-1
 
+ScWorkbenchKmsKey:
+  Type: update-stacks
+  Template: ./kms-key.yaml
+  StackName: scworkbench-kms-key
+  MaxConcurrentStacks: 10
+  Parameters:
+    AliasName: alias/scworkbench
+    AdminPrincipalArns:
+      - !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+      - !Sub 'arn:aws:iam::${AWS::AccountId}:role/OrganizationFormationBuildAccessRole'
+    UserPrincipalArns:
+      - !Sub 'arn:aws:iam::${AWS::AccountId}:role/OrganizationFormationBuildAccessRole'
+  DefaultOrganizationBinding:
+    IncludeMasterAccount: true
+    Account: '*'
+    Region: us-east-1
+
 ScWorkbenchSwDeVpc:
   Type: update-stacks
   Template: ./vpc-mini.yaml
