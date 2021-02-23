@@ -10,7 +10,7 @@ CommunityIamPasswordPolicyRP:
 
 PasswordPolicy:
   Type: update-stacks
-  Template: ./password-policy.yaml
+  Template: https://raw.githubusercontent.com/Sage-Bionetworks/aws-infra/master/templates/ORG/password-policy.yaml
   DependsOn: CommunityIamPasswordPolicyRP
   StackName: baseline-password-policy
   MaxConcurrentStacks: 10
