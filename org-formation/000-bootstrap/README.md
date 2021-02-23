@@ -24,7 +24,7 @@ once to manage many member accounts.
 2. Manually create a new AWS account and setup payment for it.
 3. Make it an organizations account
 4. Go to AWS cloudformation console and `create stack` with
-   [org-ci-service-access.yaml](https://raw.githubusercontent.com/Sage-Bionetworks/aws-infra/master/templates/org-cross-account-role.yaml)
+   [org-ci-service-access.yaml](https://raw.githubusercontent.com/Sage-Bionetworks/aws-infra/master/templates/IAM/org-ci-service-access.yaml)
    template to bootstrap the account with a service user and role.
    Name the stack `bootstrap-ci-service-access`
 5. Get the service user key, secret key and role from the cloudformation stack outputs.
